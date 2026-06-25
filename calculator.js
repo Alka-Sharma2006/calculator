@@ -64,6 +64,9 @@ btn_3.addEventListener("click",function(){
 })
 let plus=document.getElementById("box-16");
 plus.addEventListener("click",function(){   
+    if(display.value == ""){
+        return;
+    }
     let lastChar = display.value.slice(-1);
     if(isOperator(lastChar)){
          display.value = display.value.slice(0,-1);
@@ -75,10 +78,12 @@ plus.addEventListener("click",function(){
 })
 let minus=document.getElementById("box-12");
 minus.addEventListener("click",function(){
+    if(display.value == ""){
+        return;
+    }
     let lastChar = display.value.slice(-1);
     if(isOperator(lastChar)){
         display.value = display.value.slice(0,-1);
-
     expression = expression.slice(0,-1);
     }
     expression += "-";
@@ -88,6 +93,9 @@ minus.addEventListener("click",function(){
 })
 let division=document.getElementById("box-4");
 division.addEventListener("click",function(){
+    if(display.value == ""){
+        return;
+    }
     let lastChar = display.value.slice(-1);
     if(isOperator(lastChar)){
         display.value = display.value.slice(0,-1);
@@ -99,6 +107,9 @@ division.addEventListener("click",function(){
 })
 let multi=document.getElementById("box-8");
 multi.addEventListener("click",function(){
+    if(display.value == ""){
+        return;
+    }
     let lastChar = display.value.slice(-1);
     if(isOperator(lastChar)){
         display.value = display.value.slice(0,-1);
@@ -120,35 +131,37 @@ ac.addEventListener("click",function(){
 let del=document.getElementById("box-2");
 del.addEventListener("click",function(){
     curr=curr.slice(0,-1);
+    expression = expression.slice(0,-1);
     display.value = display.value.slice(0,-1);
 })
 let zero=document.getElementById("box-18");
 zero.addEventListener("click",function(){
     curr=curr+zero.value;
     expression+=zero.value;
-    display.value=curr;
+    display.value += zero.value;
     console.log(curr);
 })
 let zero2=document.getElementById("box-17");
 zero2.addEventListener("click",function(){
     curr=curr+zero2.value;
     expression+=zero2.value;
-    display.value=curr;
+    display.value += zero2.value;
     console.log(curr);
 })
 let dot=document.getElementById("box-19");
-dot.addEventListener("click",function(){
-    curr=curr+dot.value;
-    expression+=dot.value;
-    display.value=curr;
-    console.log(curr);
-})
+dot.addEventListener("click", function(){
+    if(curr.includes(".")){
+        return;
+    }
+    curr += ".";
+    expression += ".";
+    display.value += ".";
+
+});
 let percent=document.getElementById("box-3");
 percent.addEventListener("click",function(){
-    // curr=curr/100; number ke liye tha
-    curr = (Number(curr)/100).toString();
-    display.value=curr;
-    console.log(curr);
+    expression = expression + '/100'+'*';
+    display.value = expression;
 })
 let equal=document.getElementById("box-20");
     equal.addEventListener("click", function(){
